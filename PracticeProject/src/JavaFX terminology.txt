@@ -1,0 +1,4 @@
+JavaFX terminology 
+
+Stage: The entire window 
+Scene: Content inside the stage 

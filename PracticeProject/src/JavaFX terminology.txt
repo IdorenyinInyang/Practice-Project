@@ -2,3 +2,4 @@ JavaFX terminology
 
 Stage: The entire window 
 Scene: Content inside the stage 
+Canvas: Allows one to invoke drawing operations

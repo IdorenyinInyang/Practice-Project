@@ -1,3 +1,5 @@
+import javafx.event.EventHandler; 
+
 
 public class Pencil extends Tools{ 
 	
@@ -13,7 +15,7 @@ public class Pencil extends Tools{
 		y = this.y; 
 	}
 	
-	public void draw(int x, int y) { 
+	public void serializeDraw(int x, int y) { 
 		
 	}
 }

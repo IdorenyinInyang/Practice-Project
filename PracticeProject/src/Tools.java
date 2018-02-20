@@ -12,7 +12,7 @@ public class Tools {
 		y = this.y;
 	} 
 	
-	public void draw(int x, int y) { 
+	public void serializeDraw(int x, int y) { 
 		
 	} 
 }

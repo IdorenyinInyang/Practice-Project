@@ -2,4 +2,5 @@ JavaFX terminology
 
 Stage: The entire window 
 Scene: Content inside the stage 
-Canvas: Allows one to invoke drawing operations
+Canvas: Allows one to invoke drawing operations 
+Event Handlers: Necessary for any action done on the GUI. Needs to be specifically used for the canvas.

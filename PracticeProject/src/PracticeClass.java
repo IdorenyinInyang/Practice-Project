@@ -6,26 +6,42 @@ import javafx.scene.canvas.*;
 import javafx.scene.Group;
 import javafx.scene.Scene;  
 import javafx.scene.paint.*;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane; 
 import javafx.stage.Stage;
 
 
 
-
-public class PracticeClass extends Application{ 
+public final class PracticeClass extends Application{  
+	
+	private static volatile PracticeClass _instance; 
+	
+	static Pencil pencil = new Pencil();  
+	static StackPane stackP = new StackPane();
+	
+	public static PracticeClass getInstance() { 
+		if(_instance == null) { 
+			synchronized(PracticeClass.class) { 
+				if(_instance == null ) { 
+					_instance = new PracticeClass();
+				}
+			}
+		} 
+		return _instance;
+	}
 	
 	public static void main(String[] args) {
 		launch(PracticeClass.class);
-	}  
+	}   
+	
 	
 	
 	public void start(Stage primaryStage) throws Exception { 
-		primaryStage.setTitle("Practice JavaFX Window");	 
-		StackPane stackP = new StackPane();
-		Canvas canvas = new Canvas(1500, 800);  
+		primaryStage.setTitle("Practice JavaFX Window");  
+		//final GraphicsContext gContext = null;
+		//new PracticeCanvas(gContext, gContext, gContext, gContext);
+		Canvas canvas = new Canvas(1500, 800);   
+		
 		final GraphicsContext gc = canvas.getGraphicsContext2D();  
 		initDraw(gc);
 
@@ -45,8 +61,10 @@ public class PracticeClass extends Application{
 
             @Override
             public void handle(MouseEvent event) {
-                gc.lineTo(event.getX(), event.getY());
-                gc.stroke();
+                gc.lineTo(event.getX(), event.getY()); 
+                gc.stroke();  
+                pencil.serializeDraw(event.getX(), event.getY());
+                toDrawSerialize(event.getX(), event.getY());
             }
         });
 
@@ -62,7 +80,13 @@ public class PracticeClass extends Application{
         stackP.getChildren().add(canvas);
 		primaryStage.setScene(new Scene(stackP, 1500, 800)); 
 		primaryStage.show(); 
-	} 
+	}  
+	
+	//@param x  Will be sending the information that is picked up by the graphics content object to the specified Tools class to serialize input 
+	public static void toDrawSerialize(double x, double y) { 
+		pencil.toDraw(x,y); 
+		pencil.serializeDraw(x, y);
+	}
 	
 	public void initDraw(GraphicsContext gc) { 
 		double canvasWidth = gc.getCanvas().getWidth();

@@ -104,7 +104,7 @@ public final class PracticeClass extends Application{
                 canvasHeight);  //height of the rectangle
 
         gc.setFill(Color.RED);
-        gc.setStroke(Color.BLUE);
+        gc.setStroke(Color.BLACK);
         gc.setLineWidth(1);
 
 		
